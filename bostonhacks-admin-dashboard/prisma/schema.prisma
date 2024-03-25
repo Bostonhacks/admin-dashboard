@@ -1,0 +1,67 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+model Post {
+  id        String     @default(cuid()) @id
+  title     String
+  content   String?
+  published Boolean @default(false)
+  author    User?   @relation(fields: [authorId], references: [id])
+  authorId  String?
+}
+
+model User {
+  id            String       @default(cuid()) @id
+  name          String?
+  email         String?   @unique
+  createdAt     DateTime  @default(now()) @map(name: "created_at")
+  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
+  posts         Post[]
+  @@map(name: "users")
+}
+
+model Applicant {
+  id              Int      @id @default(autoincrement())
+  acceptTerms     Boolean
+  acceptTerms2    Boolean
+  acceptTerms3    Boolean
+  address         String
+  age             String
+  authProvider    String
+  bostonhacks     String
+  city            String
+  collegeYear     String
+  country         String
+  diet            String
+  educationLevel  String
+  email           String   @unique
+  ethnicity       String
+  firstName       String
+  gender          String
+  github          String
+  lastName        String
+  linkedin        String?
+  major           String
+  otherDiet       String
+  phoneNumber     String
+  portfolio       String?
+  pronouns        String
+  schoolLabel     String
+  schoolValue     String
+  shirtSize       String
+  sleep           Boolean
+  state           String
+  status          String
+  uid             String   @unique
+  zipCode         String
+}
+
