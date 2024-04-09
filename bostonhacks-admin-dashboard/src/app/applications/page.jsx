@@ -18,7 +18,7 @@ const columns = [
 field: 'fullName',
 headerName: 'Applicant name',
 width: 200,
-valueGetter: (params) => `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+//valueGetter: (params) => `${params.row.firstName || ''} ${params.row.lastName || ''}`,
 },
 { field: 'email', headerName: 'Email', width: 200 },
 { field: 'schoolLabel', headerName: 'School', width: 200 },
@@ -61,6 +61,7 @@ pageSize={5}
 rowsPerPageOptions={[5]}
 checkboxSelection
 disableSelectionOnClick
+className="bg-white shadow-md rounded-lg"
 />
 </div>
 </main>
