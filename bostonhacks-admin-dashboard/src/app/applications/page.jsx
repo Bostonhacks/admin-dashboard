@@ -6,7 +6,7 @@ export default function ApplicationPage() {
 const [applicants, setApplicants] = useState([]);
 
 useEffect(() => {
-fetch("http://localhost:3000/api/applicant")
+fetch(`/api/applicant`)
 .then(res => res.json())
 .then(data => setApplicants(data));
 }, []);
