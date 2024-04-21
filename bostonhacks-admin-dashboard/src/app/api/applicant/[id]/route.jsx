@@ -21,7 +21,8 @@ export const GET = async (request, { params }) => {
   
 }
 
-// includes no error handling / validation. Field validation should be handled by Prisma though
+
+
 
 /**
  * Updates an applicant by id
@@ -65,6 +66,8 @@ export const POST = async (request, { params }) => {
 
     
 }
+
+
 
 export const DELETE = async (request, { params }) => {
     try {

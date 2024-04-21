@@ -2,11 +2,43 @@
 import { NextResponse } from "next/server";
 import prisma from "../../../../lib/prisma";
 
+// helper to convert URLSearchParams to object
+const paramsToObject = (entries) => {
+    const result = {}
+    for(const [key, value] of entries) { // each 'entry' is a [key, value] tupple
+      result[key] = value;
+    }
+    return result;
+}
 
+/**
+ * Get all applicants or get applicants that match query parameters. Does not include error handling or validation. Querying by boolean types does not work.
+ * @param {*} request Takes in query parametesrs from URL. If no query parameters, returns all applicants. If query parameters, returns all applicants that match query parameters
+ * @param {*} params
+ * @returns Array of all applicants given query parameters
+ * @example
+ *  /api/applicant?city=Boston&age=24
+ *      returns all applicants that are from Boston and are 24 years old
+ * 
+ *  /api/applicant
+ *      returns all applicants
+ */
 export const GET = async (request, { params }) => {
     try {
-        const applicants = await prisma.applicant.findMany();
+        // parse query parameters
+        const searchParams = request.nextUrl.searchParams
+        const query = paramsToObject(searchParams.entries());
+
+        // returns all applicants
+        if (!searchParams) {
+            const applicants = await prisma.applicant.findMany();
+            return NextResponse.json(applicants);
+        }
+
+        // filtering
+        const applicants = await prisma.applicant.findMany({ where: query });
         return NextResponse.json(applicants);
+
     } catch(err) {
         // console.error(err);
         return NextResponse.json({ error: "Failed to retrieve all applicants" }, { status: 500 });
