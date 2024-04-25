@@ -39,7 +39,7 @@ export const GET = async (request, { params }) => {
 	}
 }
 */
-export const POST = async (request, { params }) => {
+export const PUT = async (request, { params }) => {
     // sample code to use queries
     // const searchParams = request.nextUrl.searchParams
     // const query = searchParams.get('query')
