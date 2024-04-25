@@ -55,7 +55,7 @@ export const PUT = async (request, { params }) => {
         // return NextResponse.json({ ...applicant, ...body });
         const updatedApplicant = await prisma.applicant.update({
             where: { id: Number(params.id) },
-            data: { ...applicant, ...body } // merge the new data with the old data
+            data: body // update fields present in request body
         })
 
         return NextResponse.json(updatedApplicant);
