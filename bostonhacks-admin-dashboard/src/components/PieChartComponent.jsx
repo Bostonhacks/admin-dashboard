@@ -2,10 +2,6 @@
 import { PieChart, pieArcLabelClasses } from "@mui/x-charts";
 
 const PieChartComponent = ({ data }) => {
-    const size = {
-        width: 500,
-        height: 500,
-    };
     return (
         <PieChart
         margin={{ top: 10, bottom: 10, left: 10, right:200 }}
