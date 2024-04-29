@@ -69,8 +69,6 @@ export default function ApplicationPage() {
                     initialState={{
                         pagination: { paginationModel: { pageSize: 25 } },
                     }}
-                    // rowsPerPageOptions={}
-                    checkboxSelection
                     disableSelectionOnClick
                     className="bg-white shadow-md rounded-lg"
                 />
