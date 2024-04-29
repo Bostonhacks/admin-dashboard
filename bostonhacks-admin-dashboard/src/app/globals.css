@@ -1,6 +1,10 @@
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
 
 /*
 Copy CSS from below to add our own globals
@@ -35,3 +39,20 @@ body {
     text-wrap: balance;
   }
 } */
+
+.background-primary {
+  background: #2b2b2f;
+}
+
+.text-primary {
+  color: white;
+}
+
+.text-tertiary {
+  color: rgb(149, 144, 183);
+
+}
+
+.background-tertiary {
+  background: rgb(70, 70, 97);
+}

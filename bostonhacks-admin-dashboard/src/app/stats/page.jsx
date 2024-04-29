@@ -73,24 +73,37 @@ export default function StatsPage() {
     const gradYearChartData = Object.entries(gradYearData).map(([gradYear, count]) => ({ value: count, label: gradYear }));
     const ethnicityChartData = Object.entries(ethnicityData).map(([ethnicity, count]) => ({ value: count, label: ethnicity }));
 
-    return (
-        <main className="flex flex-col items-center bg-black text-white">
-            <h1 className="text-3xl font-bold mt-10">Stats</h1>
-            <div>
-            <h1 className="text-3xl font-bold mt-10">Gender</h1>
-            <PieChartComponent data={genderChartData}/>
+    const piechartStyles = "p-5 background-tertiary pb-5 rounded-lg shadow-xl";
+    const headerStyles = "text-3xl font-[500] text-primary";
 
-            <h1 className="text-3xl font-bold mt-10">Schools</h1>
-            <PieChartComponent data={schoolChartData} />
-            
-            <h1 className="text-3xl font-bold mt-10">Majors</h1>
-            <PieChartComponent data={majorChartData} />
-            
-            <h1 className="text-3xl font-bold mt-10">Class Year</h1>
-            <PieChartComponent data={gradYearChartData} />
-            
-            <h1 className="text-3xl font-bold mt-10">Ethnicity</h1>
-            <PieChartComponent data={ethnicityChartData} />
+    return (
+        <main className="flex flex-col items-center background-primary text-primary w-full">
+            <h1 className="text-3xl font-bold m-5">Stats</h1>
+            <div className="grid xl:grid-cols-2 grid-cols:1 gap-10">
+                <span className={piechartStyles}>
+                <h1 className={headerStyles}>Gender</h1>
+                <PieChartComponent data={genderChartData}/>
+                </span>
+
+                <span className={piechartStyles}>
+                <h1 className={headerStyles}>Schools</h1>
+                <PieChartComponent data={schoolChartData} />
+                </span>
+                
+                <span className={piechartStyles}>
+                <h1 className={headerStyles}>Majors</h1>
+                <PieChartComponent data={majorChartData} />
+                </span>
+
+                <span className={piechartStyles}>
+                <h1 className={headerStyles}>Class Year</h1>
+                <PieChartComponent data={gradYearChartData} />
+                </span>
+
+                <span className={piechartStyles}>
+                <h1 className={headerStyles}>Ethnicity</h1>
+                <PieChartComponent data={ethnicityChartData} />
+                </span>
             </div>
         </main>
     );
