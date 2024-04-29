@@ -73,13 +73,13 @@ export default function StatsPage() {
     const gradYearChartData = Object.entries(gradYearData).map(([gradYear, count]) => ({ value: count, label: gradYear }));
     const ethnicityChartData = Object.entries(ethnicityData).map(([ethnicity, count]) => ({ value: count, label: ethnicity }));
 
-    const piechartStyles = "m-5 background-tertiary pb-5 rounded-lg shadow-xl";
-    const headerStyles = "text-3xl font-[500] mt-10 text-primary ml-5";
+    const piechartStyles = "p-5 background-tertiary pb-5 rounded-lg shadow-xl";
+    const headerStyles = "text-3xl font-[500] text-primary";
 
     return (
         <main className="flex flex-col items-center background-primary text-primary w-full">
-            <h1 className="text-3xl font-bold mt-10">Stats</h1>
-            <div className="grid lg:grid-cols-2 grid-cols:1">
+            <h1 className="text-3xl font-bold m-5">Stats</h1>
+            <div className="grid xl:grid-cols-2 grid-cols:1 gap-10">
                 <span className={piechartStyles}>
                 <h1 className={headerStyles}>Gender</h1>
                 <PieChartComponent data={genderChartData}/>

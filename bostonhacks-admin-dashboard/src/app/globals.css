@@ -48,6 +48,11 @@ body {
   color: white;
 }
 
+.text-tertiary {
+  color: rgb(149, 144, 183);
+
+}
+
 .background-tertiary {
   background: rgb(70, 70, 97);
 }
