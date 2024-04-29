@@ -7,12 +7,12 @@ import { Dialog, DialogTitle, DialogContent, List, ListItem, ListItemText, Butto
 function ApplicantModal({ open, handleClose, applicant }) {
     return (
         <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
-            <DialogTitle>Applicant Details</DialogTitle>
-            <DialogContent>
+            <DialogTitle style={{ backgroundColor: '#252526', color: 'white' }}>Applicant Details</DialogTitle>
+            <DialogContent style={{ backgroundColor: '#252526', color: 'white'}}>
                 <List>
                     {Object.entries(applicant).map(([key, value]) => (
-                        <ListItem key={key}>
-                            <ListItemText primary={key} secondary={value || 'N/A'} />
+                        <ListItem key={key} style={{ color: 'white' }}>
+                            <ListItemText primary={key} secondary={value || 'N/A'} primaryTypographyProps={{ style: { color: 'white' } }} secondaryTypographyProps={{ style: { color: 'white' } }}/>
                         </ListItem>
                     ))}
                 </List>
@@ -118,17 +118,33 @@ export default function ApplicationPage() {
 
     // Try adding a double/single click event listener to the DataGrid (part of API) that takes you to the specific page of the applicant (use the id field and call /api/applicant/[id] to get the specific applicant data)
     // by possibly rerouting to /applicants/[id] or /applicants/[id]/view
+    const pageStyles = {
+        backgroundColor: '#1E1E1E', // Dark background for the entire page
+        color: 'white', // White text color
+        height: '100vh', // Full viewport height
+        padding: '2rem', // Padding around the content
+    };
+
+    const cardStyles = {
+        backgroundColor: '#252526', // Slightly lighter shade for cards
+        borderRadius: '8px', // Rounded corners for the cards
+        margin: '1rem', // Margin around cards
+        padding: '1rem', // Padding inside cards
+        boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)', // Subtle shadow for depth
+        color: 'white', // White text color
+    };
+
     return (
-        <main className="p-5">
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-5">
+        <main style={pageStyles}>
+            <div style={{ ...cardStyles, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 {Object.entries(statusCounts).map(([key, value]) => (
-                    <div className="bg-white shadow-lg rounded-lg p-5 flex flex-col items-center justify-center">
+                    <div className=" shadow-lg rounded-lg p-5 flex flex-col items-center justify-center">
                         <span className="text-lg font-semibold">{key.charAt(0).toUpperCase() + key.slice(1)}</span>
                         <span className="text-2xl font-bold">{value}</span>
                     </div>
                 ))}
             </div>
-            <div className="bg-white p-5 shadow-lg rounded-lg">
+            <div style={cardStyles}>
                 <h1 className="text-3xl font-bold text-center mb-5">Applications</h1>
                 <DataGrid
                     rows={applicants.map(applicant => ({ ...applicant, id: applicant.uid }))}
