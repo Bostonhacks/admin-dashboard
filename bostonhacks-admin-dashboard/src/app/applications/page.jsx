@@ -1,8 +1,11 @@
 'use client';
 import { useEffect, useState } from "react";
 import { DataGrid } from '@mui/x-data-grid';
+import { useRouter } from "next/navigation";
+
 
 export default function ApplicationPage() {
+    const router = useRouter();
     const [applicants, setApplicants] = useState([]);
 
     useEffect(() => {
@@ -11,20 +14,17 @@ export default function ApplicationPage() {
         .then(data => setApplicants(data));
     }, []);
 
+    // Function to handle click event, logging the row ID
+    const handleIdClick = (id) => {
+        console.log("Clicked ID:", id);
+        router.push(`/applications/${id}`)
+    }
+
     // Define the columns for DataGrid
     const columns = [
         { field: 'id', headerName: 'ID', flex: 0.5 },
-        {
-            field: 'firstName',
-            headerName: 'First name',
-            flex: 1, // use flex 1,2,3,4... for the width of the column
-            //valueGetter: (params) => `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-        },
-        {
-            field: 'lastName',
-            headerName: 'Last Name',
-            flex: 1, // use flex 1,2,3,4... for the width of the column
-        },
+        { field: 'firstName', headerName: 'First name', flex: 1 },
+        { field: 'lastName', headerName: 'Last Name', flex: 1 },
         { field: 'email', headerName: 'Email', flex: 1 },
         { field: 'schoolLabel', headerName: 'School', flex: 1 },
         { field: 'github', headerName: 'GitHub', flex: 1 },
@@ -35,15 +35,25 @@ export default function ApplicationPage() {
             flex: 2,
             renderCell: (params) => (
                 <>
-                <button className="mr-5 bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded">
-                    Accept
-                </button>
-                <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded">
-                    Reject
-                </button>
+                    <button className="mr-5 bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded">
+                        Accept
+                    </button>
+                    <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded">
+                        Reject
+                    </button>
                 </>
             ),
         },
+        {
+            sortable: false,
+            renderCell: (params) => (
+                <>
+                    <p style={{ cursor: 'pointer' }} onClick={() => handleIdClick(params.id)}>
+                        More Details
+                    </p>
+                </>
+            )
+        }
     ];
 
     // Convert applicants to rows for the DataGrid
