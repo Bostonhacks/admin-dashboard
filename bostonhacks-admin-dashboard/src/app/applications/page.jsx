@@ -147,7 +147,7 @@ export default function ApplicationPage() {
             <div style={cardStyles}>
                 <h1 className="text-3xl font-bold text-center mb-5">Applications</h1>
                 <DataGrid
-                    rows={applicants.map(applicant => ({ ...applicant, id: applicant.uid }))}
+                    rows={applicants.map(applicant => ({ ...applicant, id: applicant.id }))}
                     columns={columns}
                     pageSizeOptions={[5, 10, 25, 50, 100]}
                     initialState={{
